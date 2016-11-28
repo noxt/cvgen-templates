@@ -33,16 +33,16 @@
         <div class="profile-container">
             <img class="profile" src="assets/images/profile.png" alt="" />
             <h1 class="name">{{ .AboutMe.Name }}</h1>
-            <h3 class="tagline">Full Stack Developer</h3>
+            <h3 class="tagline">{{ .AboutMe.Role }}</h3>
         </div><!--//profile-container-->
 
         <div class="contact-container container-block">
             <ul class="list-unstyled contact-list">
-                <li class="email"><i class="fa fa-envelope"></i><a href="mailto: yourname@email.com">alan.doe@website.com</a></li>
-                <li class="phone"><i class="fa fa-phone"></i><a href="tel:0123 456 789">0123 456 789</a></li>
-                <li class="website"><i class="fa fa-globe"></i><a href="http://themes.3rdwavemedia.com/website-templates/free-responsive-website-template-for-developers/" target="_blank">portfoliosite.com</a></li>
-                <li class="linkedin"><i class="fa fa-linkedin"></i><a href="#" target="_blank">linkedin.com/in/alandoe</a></li>
-                <li class="github"><i class="fa fa-github"></i><a href="#" target="_blank">github.com/username</a></li>
+                <li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{ .AboutMe.Contacts.Email }}">{{ .AboutMe.Contacts.Email }}</a></li>
+                <li class="phone"><i class="fa fa-phone"></i><a href="tel:{{ .AboutMe.Contacts.Phone }}">{{ .AboutMe.Contacts.Phone }}</a></li>
+                <li class="skype"><i class="fa fa-skype"></i><a href="skype:{{ .AboutMe.Contacts.Skype }}" target="_blank">{{ .AboutMe.Contacts.Skype }}</a></li>
+                <li class="linkedin"><i class="fa fa-linkedin"></i><a href="https://linkedin.com/in/{{ .AboutMe.Social.Linkedin }}" target="_blank">linkedin.com/in/{{ .AboutMe.Social.Linkedin }}</a></li>
+                <li class="github"><i class="fa fa-github"></i><a href="https://github.com/{{ .AboutMe.Social.Github }}" target="_blank">github.com/{{ .AboutMe.Social.Github }}</a></li>
                 <li class="twitter"><i class="fa fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li>
             </ul>
         </div><!--//contact-container-->
