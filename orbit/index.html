@@ -34,31 +34,40 @@
             <img class="profile" src="assets/images/profile.png" alt="" />
             <h1 class="name">{{ .AboutMe.Name }}</h1>
             <h3 class="tagline">{{ .AboutMe.Role }}</h3>
+
+            <div class="contact-container container-block" style="padding: 30px 0 0 0;">
+                <ul class="list-inline contact-list" style="margin: 0 0 -15px 0;">
+                    {{if .AboutMe.Social.Github }}<li><a href="https://github.com/{{ .AboutMe.Social.Github }}" target="_blank" title="GitHub: {{ .AboutMe.Social.Github }}"><i class="fa fa-github"></i></a></li>{{ end }}
+                    {{if .AboutMe.Social.Linkedin }}<li><a href="https://linkedin.com/in/{{ .AboutMe.Social.Linkedin }}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>{{ end }}
+                    {{if .AboutMe.Social.Twitter }}<li><a href="https://twitter.com/{{ .AboutMe.Social.Twitter }}" target="_blank" title="Twitter: {{ .AboutMe.Social.Twitter }}"><i class="fa fa-twitter"></i></a></li>{{ end }}
+                    {{if .AboutMe.Social.Medium }}<li><a href="https://medium.com/@{{ .AboutMe.Social.Medium }}" target="_blank" title="Medium: @{{ .AboutMe.Social.Medium }}"><i class="fa fa-medium"></i></a></li>{{ end }}
+                </ul>
+            </div><!--//contact-container-->
+
         </div><!--//profile-container-->
 
+        <noindex>
         <div class="contact-container container-block">
             <ul class="list-unstyled contact-list">
-                <li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{ .AboutMe.Contacts.Email }}">{{ .AboutMe.Contacts.Email }}</a></li>
-                <li class="phone"><i class="fa fa-phone"></i><a href="tel:{{ .AboutMe.Contacts.Phone }}">{{ .AboutMe.Contacts.Phone }}</a></li>
-                <li class="skype"><i class="fa fa-skype"></i><a href="skype:{{ .AboutMe.Contacts.Skype }}" target="_blank">{{ .AboutMe.Contacts.Skype }}</a></li>
-                <li class="linkedin"><i class="fa fa-linkedin"></i><a href="https://linkedin.com/in/{{ .AboutMe.Social.Linkedin }}" target="_blank">linkedin.com/in/{{ .AboutMe.Social.Linkedin }}</a></li>
-                <li class="github"><i class="fa fa-github"></i><a href="https://github.com/{{ .AboutMe.Social.Github }}" target="_blank">github.com/{{ .AboutMe.Social.Github }}</a></li>
-                <li class="twitter"><i class="fa fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li>
+                {{if .AboutMe.Social.Github }}<li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{ .AboutMe.Contacts.Email }}">{{ .AboutMe.Contacts.Email }}</a></li>{{ end }}
+                {{if .AboutMe.Social.Github }}<li class="phone"><i class="fa fa-phone"></i><a href="tel:{{ .AboutMe.Contacts.Phone }}">{{ .AboutMe.Contacts.Phone }}</a></li>{{ end }}
+                {{if .AboutMe.Social.Github }}<li class="skype"><i class="fa fa-skype"></i><a href="skype:{{ .AboutMe.Contacts.Skype }}" target="_blank" title="Skype: {{ .AboutMe.Contacts.Skype }}">{{ .AboutMe.Contacts.Skype }}</a></li>{{ end }}
             </ul>
         </div><!--//contact-container-->
+        </noindex>
+
+        {{ if .Education }}
         <div class="education-container container-block">
-            <h2 class="container-block-title">Education</h2>
+            <h2 class="container-block-title">Образование</h2>
+            {{ range $education := .Education }}
             <div class="item">
-                <h4 class="degree">MSc in Computer Science</h4>
-                <h5 class="meta">University of London</h5>
-                <div class="time">2011 - 2012</div>
+                <h4 class="degree">{{ $education.Degree }}</h4>
+                <h5 class="meta">{{ $education.Name }}</h5>
+                <div class="time">{{ $education.Start }} - {{ $education.End }}</div>
             </div><!--//item-->
-            <div class="item">
-                <h4 class="degree">BSc in Applied Mathematics</h4>
-                <h5 class="meta">Bristol University</h5>
-                <div class="time">2007 - 2011</div>
-            </div><!--//item-->
+            {{ end }}
         </div><!--//education-container-->
+        {{ end }}
 
         <div class="languages-container container-block">
             <h2 class="container-block-title">Languages</h2>
