@@ -256,6 +256,12 @@ p {
 .footer .fa-heart {
   color: #fb866a;
 }
+.project-item {
+  margin: 5px 0;
+}
+.project-item:last-child {
+  margin-bottom: 20px;
+}
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
   .sidebar-wrapper {
