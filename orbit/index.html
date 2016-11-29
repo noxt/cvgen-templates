@@ -3,13 +3,13 @@
 <!--[if IE 9]> <html lang="ru" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
 <head>
-    <title>{{ .AboutMe.Name }}</title>
+    <title>{{.AboutMe.Name}}</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ .AboutMe.Description }}">
-    <meta name="author" content="{{ .AboutMe.Name }}">
+    <meta name="description" content="{{.AboutMe.Description}}">
+    <meta name="author" content="{{.AboutMe.Name}}">
     <link rel="shortcut icon" href="favicon.ico">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- Global CSS -->
@@ -32,15 +32,15 @@
     <div class="sidebar-wrapper">
         <div class="profile-container">
             <img class="profile" src="assets/images/profile.png" alt="" />
-            <h1 class="name">{{ .AboutMe.Name }}</h1>
-            <h3 class="tagline">{{ .AboutMe.Role }}</h3>
+            <h1 class="name">{{.AboutMe.Name}}</h1>
+            <h3 class="tagline">{{.AboutMe.Role}}</h3>
 
             <div class="contact-container container-block" style="padding: 30px 0 0 0;">
                 <ul class="list-inline contact-list" style="margin: 0 0 -15px 0;">
-                    {{if .AboutMe.Social.Github }}<li><a href="https://github.com/{{ .AboutMe.Social.Github }}" target="_blank" title="GitHub: {{ .AboutMe.Social.Github }}"><i class="fa fa-github"></i></a></li>{{ end }}
-                    {{if .AboutMe.Social.Linkedin }}<li><a href="https://linkedin.com/in/{{ .AboutMe.Social.Linkedin }}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>{{ end }}
-                    {{if .AboutMe.Social.Twitter }}<li><a href="https://twitter.com/{{ .AboutMe.Social.Twitter }}" target="_blank" title="Twitter: {{ .AboutMe.Social.Twitter }}"><i class="fa fa-twitter"></i></a></li>{{ end }}
-                    {{if .AboutMe.Social.Medium }}<li><a href="https://medium.com/@{{ .AboutMe.Social.Medium }}" target="_blank" title="Medium: @{{ .AboutMe.Social.Medium }}"><i class="fa fa-medium"></i></a></li>{{ end }}
+                    {{if .AboutMe.Social.Github}}<li><a href="https://github.com/{{.AboutMe.Social.Github}}" target="_blank" title="GitHub: {{.AboutMe.Social.Github}}"><i class="fa fa-github"></i></a></li>{{end}}
+                    {{if .AboutMe.Social.Linkedin}}<li><a href="https://linkedin.com/in/{{.AboutMe.Social.Linkedin}}" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>{{end}}
+                    {{if .AboutMe.Social.Twitter}}<li><a href="https://twitter.com/{{.AboutMe.Social.Twitter}}" target="_blank" title="Twitter: {{.AboutMe.Social.Twitter}}"><i class="fa fa-twitter"></i></a></li>{{end}}
+                    {{if .AboutMe.Social.Medium}}<li><a href="https://medium.com/@{{.AboutMe.Social.Medium}}" target="_blank" title="Medium: @{{.AboutMe.Social.Medium}}"><i class="fa fa-medium"></i></a></li>{{end}}
                 </ul>
             </div><!--//contact-container-->
 
@@ -49,95 +49,76 @@
         <noindex>
         <div class="contact-container container-block">
             <ul class="list-unstyled contact-list">
-                {{if .AboutMe.Social.Github }}<li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{ .AboutMe.Contacts.Email }}">{{ .AboutMe.Contacts.Email }}</a></li>{{ end }}
-                {{if .AboutMe.Social.Github }}<li class="phone"><i class="fa fa-phone"></i><a href="tel:{{ .AboutMe.Contacts.Phone }}">{{ .AboutMe.Contacts.Phone }}</a></li>{{ end }}
-                {{if .AboutMe.Social.Github }}<li class="skype"><i class="fa fa-skype"></i><a href="skype:{{ .AboutMe.Contacts.Skype }}" target="_blank" title="Skype: {{ .AboutMe.Contacts.Skype }}">{{ .AboutMe.Contacts.Skype }}</a></li>{{ end }}
+                {{if .AboutMe.Contacts.Email}}<li class="email"><i class="fa fa-envelope"></i><a href="mailto: {{.AboutMe.Contacts.Email}}">{{.AboutMe.Contacts.Email}}</a></li>{{end}}
+                {{if .AboutMe.Contacts.Phone}}<li class="phone"><i class="fa fa-phone"></i><a href="tel:{{.AboutMe.Contacts.Phone}}">{{.AboutMe.Contacts.Phone}}</a></li>{{end}}
+                {{if .AboutMe.Contacts.Skype}}<li class="skype"><i class="fa fa-skype"></i><a href="skype:{{.AboutMe.Contacts.Skype}}" target="_blank" title="Skype: {{.AboutMe.Contacts.Skype}}">{{.AboutMe.Contacts.Skype}}</a></li>{{end}}
             </ul>
         </div><!--//contact-container-->
         </noindex>
 
-        {{ if .Education }}
+        {{if .Education}}
         <div class="education-container container-block">
             <h2 class="container-block-title">Образование</h2>
-            {{ range $education := .Education }}
+            {{range $education := .Education}}
             <div class="item">
-                <h4 class="degree">{{ $education.Degree }}</h4>
-                <h5 class="meta">{{ $education.Name }}</h5>
-                <div class="time">{{ $education.Start }} - {{ $education.End }}</div>
+                <h4 class="degree">{{$education.Degree}}</h4>
+                <h5 class="meta">{{$education.Name}}</h5>
+                <div class="time">{{$education.Start}} - {{if $education.End}}{{$education.End}}{{else}}по настоящее время{{end}}</div>
             </div><!--//item-->
-            {{ end }}
+            {{end}}
         </div><!--//education-container-->
-        {{ end }}
+        {{end}}
 
+        {{if .Languages}}
         <div class="languages-container container-block">
-            <h2 class="container-block-title">Languages</h2>
+            <h2 class="container-block-title">Языки</h2>
             <ul class="list-unstyled interests-list">
-                <li>English <span class="lang-desc">(Native)</span></li>
-                <li>French <span class="lang-desc">(Professional)</span></li>
-                <li>Spanish <span class="lang-desc">(Professional)</span></li>
+                {{range $language := .Languages}}
+                <li>{{$language.Name}} <span class="lang-desc">({{$language.Level.Description}})</span></li>
+                {{end}}
             </ul>
         </div><!--//interests-->
-
-        <div class="interests-container container-block">
-            <h2 class="container-block-title">Interests</h2>
-            <ul class="list-unstyled interests-list">
-                <li>Climbing</li>
-                <li>Snowboarding</li>
-                <li>Cooking</li>
-            </ul>
-        </div><!--//interests-->
+        {{end}}
 
     </div><!--//sidebar-wrapper-->
 
     <div class="main-wrapper">
 
+        {{if .AboutMe.Description}}
         <section class="section summary-section">
-            <h2 class="section-title"><i class="fa fa-user"></i>Career Profile</h2>
+            <h2 class="section-title"><i class="fa fa-user"></i>Общая информация</h2>
             <div class="summary">
-                <p>Summarise your career here lorem ipsum dolor sit amet, consectetuer adipiscing elit. You can <a href="http://themes.3rdwavemedia.com/website-templates/orbit-free-resume-cv-template-for-developers/" target="_blank">download this free resume/CV template here</a>. Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.</p>
+                <p>{{.AboutMe.Description}}</p>
             </div><!--//summary-->
         </section><!--//section-->
+        {{end}}
 
+        {{if .Organizations}}
         <section class="section experiences-section">
-            <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>
+            <h2 class="section-title"><i class="fa fa-briefcase"></i>Опыт</h2>
 
+            {{range $organization := .Organizations}}
             <div class="item">
                 <div class="meta">
                     <div class="upper-row">
-                        <h3 class="job-title">Lead Developer</h3>
-                        <div class="time">2015 - Present</div>
+                        <h3 class="job-title">{{$organization.Role}}</h3>
+                        <div class="time">{{$organization.Start}} - {{if $organization.End}}{{$organization.End}}{{else}}по настоящее время{{end}}</div>
                     </div><!--//upper-row-->
-                    <div class="company">Startup Hubs, San Francisco</div>
+                    <div class="company"><a href="{{$organization.Link}}" target="_blank">{{$organization.Name}}</a>, {{$organization.City}}</div>
                 </div><!--//meta-->
+                {{if $organization.Details}}
                 <div class="details">
-                    <p>Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+                    <p>{{$organization.Details}}</p>
                 </div><!--//details-->
+                {{end}}
             </div><!--//item-->
+            {{end}}
 
         </section><!--//section-->
-
-        <section class="section education-section">
-            <h2 class="section-title"><i class="fa fa-graduation-cap"></i>Education</h2>
-
-            <div class="item">
-                <div class="meta">
-                    <div class="upper-row">
-                        <h3 class="job-title">Lead Developer</h3>
-                        <div class="time">2015 - Present</div>
-                    </div><!--//upper-row-->
-                    <div class="company">Startup Hubs, San Francisco</div>
-                </div><!--//meta-->
-                <div class="details">
-                    <p>Describe your role here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                </div><!--//details-->
-            </div><!--//item-->
-
-        </section><!--//section-->
+        {{end}}
 
         <section class="section projects-section">
-            <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
+            <h2 class="section-title"><i class="fa fa-archive"></i>Проекты</h2>
             <div class="intro">
                 <p>You can list your side projects or open source libraries in this section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
             </div><!--//intro-->
@@ -152,7 +133,7 @@
         </section><!--//section-->
 
         <section class="skills-section section">
-            <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
+            <h2 class="section-title"><i class="fa fa-rocket"></i>Навыки</h2>
             <div class="skillset">
                 <div class="item">
                     <h3 class="level-title">Python &amp; Django</h3>
@@ -170,7 +151,7 @@
 <footer class="footer">
     <div class="text-center">
         <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        <small class="copyright">Сгенерировано с помощь <a href="https://github.com/noxt/cvgen" target="_blank">cvgen</a>. Дизайн <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a></small>
     </div><!--//container-->
 </footer><!--//footer-->
 
