@@ -155,33 +155,60 @@
         </section><!--//section-->
         {{end}}
 
+        {{if .Projects}}
         <section class="section projects-section">
-            <h2 class="section-title"><i class="fa fa-archive"></i>Проекты</h2>
-            <div class="intro">
-                <p>You can list your side projects or open source libraries in this section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula in nunc bibendum fringilla a eu lectus.</p>
-            </div><!--//intro-->
-            <div class="item">
-                <span class="project-title"><a href="#hook">Velocity</a></span> - <span class="project-tagline">A responsive website template designed to help startups promote, market and sell their products.</span>
+            <h2 class="section-title"><i class="fa fa-archive"></i>Мои проекты</h2>
 
-            </div><!--//item-->
+            {{range $project := .Projects}}
             <div class="item">
-                <span class="project-title"><a href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/" target="_blank">DevStudio</a></span> -
-                <span class="project-tagline">A responsive website template designed to help web developers/designers market their services. </span>
-            </div><!--//item-->
+                <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> -
+                <span class="project-tagline">{{$project.Description}}</span>
+
+                {{if $project.Role}}
+                <div class="project-item">
+                    <b>Моя роль</b><br>
+                    {{$project.Role}}
+                </div>
+                {{end}}
+
+                {{if $project.Challenges}}
+                <div class="project-item">
+                    <b>Интересные задачи</b>
+                    <ul>
+                        {{range $project.Challenges}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                </div>
+                {{end}}
+
+                {{if $project.Technologies}}
+                <div class="project-item">
+                    <b>Технологии</b><br>
+                    {{$project.Technologies}}
+                </div>
+                {{end}}
+            </div>
+            {{end}}
+
         </section><!--//section-->
+        {{end}}
 
+        {{if .Skills}}
         <section class="skills-section section">
             <h2 class="section-title"><i class="fa fa-rocket"></i>Навыки</h2>
             <div class="skillset">
+                {{range $skill := .Skills}}
                 <div class="item">
-                    <h3 class="level-title">Python &amp; Django</h3>
+                    <h3 class="level-title">{{$skill.Name}}</h3>
                     <div class="level-bar">
-                        <div class="level-bar-inner" data-level="98%">
-                        </div>
+                        <div class="level-bar-inner" data-level="{{$skill.Progress}}"></div>
                     </div><!--//level-bar-->
                 </div><!--//item-->
+                {{end}}
             </div>
         </section><!--//skills-section-->
+        {{end}}
 
     </div><!--//main-body-->
 </div>
@@ -189,7 +216,7 @@
 <footer class="footer">
     <div class="text-center">
         <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright">Сгенерировано с помощь <a href="https://github.com/noxt/cvgen" target="_blank">cvgen</a>. Дизайн <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a></small>
+        <small class="copyright">Генератор <a href="https://github.com/noxt/cvgen" target="_blank">cvgen</a>. Дизайн <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a></small>
     </div><!--//container-->
 </footer><!--//footer-->
 
