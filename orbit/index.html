@@ -70,13 +70,14 @@
         {{end}}
 
         {{if .AboutMe.Languages}}
-        <div class="languages-container container-block">
+        <div class="education-container container-block">
             <h2 class="container-block-title">Языки</h2>
-            <ul class="list-unstyled interests-list">
-                {{range $language := .AboutMe.Languages}}
-                <li>{{$language.Name}} <span class="lang-desc">({{$language.Level.Description}})</span></li>
-                {{end}}
-            </ul>
+            {{range $language := .AboutMe.Languages}}
+            <div class="item">
+                <h4 class="degree">{{$language.Name}}</h4>
+                <h5 class="meta">{{$language.Level.Description}}</h5>
+            </div><!--//item-->
+            {{end}}
         </div><!--//interests-->
         {{end}}
 
@@ -86,11 +87,27 @@
 
         {{if .AboutMe.Description}}
         <section class="section summary-section">
-            <h2 class="section-title"><i class="fa fa-user"></i>Общая информация</h2>
+            <h2 class="section-title"><i class="fa fa-user"></i>Инфо</h2>
             <div class="summary">
                 <p>{{.AboutMe.Description}}</p>
             </div><!--//summary-->
         </section><!--//section-->
+        {{end}}
+
+        {{if .Skills}}
+        <section class="skills-section section">
+            <h2 class="section-title"><i class="fa fa-rocket"></i>Навыки</h2>
+            <div class="skillset">
+                {{range $skill := .Skills}}
+                <div class="item">
+                    <h3 class="level-title">{{$skill.Name}}</h3>
+                    <div class="level-bar">
+                        <div class="level-bar-inner" data-level="{{$skill.Progress}}"></div>
+                    </div><!--//level-bar-->
+                </div><!--//item-->
+                {{end}}
+            </div>
+        </section><!--//skills-section-->
         {{end}}
 
         {{if .Organizations}}
@@ -117,7 +134,7 @@
                 <ul>
                     {{range $project := $organization.Projects}}
                     <li>
-                        <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> -
+                        <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> &mdash;
                         <span class="project-tagline">{{$project.Description}}</span>
 
                         {{if $project.Role}}
@@ -161,7 +178,7 @@
 
             {{range $project := .Projects}}
             <div class="item">
-                <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> -
+                <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> &mdash;
                 <span class="project-tagline">{{$project.Description}}</span>
 
                 {{if $project.Role}}
@@ -192,22 +209,6 @@
             {{end}}
 
         </section><!--//section-->
-        {{end}}
-
-        {{if .Skills}}
-        <section class="skills-section section">
-            <h2 class="section-title"><i class="fa fa-rocket"></i>Навыки</h2>
-            <div class="skillset">
-                {{range $skill := .Skills}}
-                <div class="item">
-                    <h3 class="level-title">{{$skill.Name}}</h3>
-                    <div class="level-bar">
-                        <div class="level-bar-inner" data-level="{{$skill.Progress}}"></div>
-                    </div><!--//level-bar-->
-                </div><!--//item-->
-                {{end}}
-            </div>
-        </section><!--//skills-section-->
         {{end}}
 
     </div><!--//main-body-->
