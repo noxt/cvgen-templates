@@ -61,9 +61,9 @@
             <h2 class="container-block-title">Образование</h2>
             {{range $education := .Educations}}
             <div class="item">
-                <h4 class="degree">{{$education.Degree}}</h4>
-                <h5 class="meta">{{$education.Name}}</h5>
-                <div class="time">{{$education.Start}} - {{if $education.End}}{{$education.End}}{{else}}наст. время{{end}}</div>
+                <h4 class="degree">{{$education.Name}}</h4>
+                <h5 class="meta">{{$education.Degree}}</h5>
+                <div class="time">{{$education.Start}}{{if ne $education.Start $education.End}} - {{if $education.End}}{{$education.End}}{{else}}наст. время{{end}}{{end}}</div>
             </div><!--//item-->
             {{end}}
         </div><!--//education-container-->
@@ -119,9 +119,9 @@
                 <div class="meta">
                     <div class="upper-row">
                         <h3 class="job-title">{{$organization.Role}}</h3>
-                        <div class="time">{{$organization.Start}} - {{if $organization.End}}{{$organization.End}}{{else}}наст. время{{end}}</div>
+                        <div class="time">{{$organization.Start}}{{if ne $organization.Start $organization.End}} - {{if $organization.End}}{{$organization.End}}{{else}}наст. время{{end}}{{end}}</div>
                     </div><!--//upper-row-->
-                    <div class="company"><a href="{{$organization.Link}}" target="_blank">{{$organization.Name}}</a> {{$organization.City}}</div>
+                    <div class="company"><a {{if $organization.Link}}href="{{$organization.Link}}" target="_blank"{{end}}>{{$organization.Name}}</a> {{$organization.City}}</div>
                 </div><!--//meta-->
 
                 {{if $organization.Description}}
@@ -134,7 +134,7 @@
                 <ul>
                     {{range $project := $organization.Projects}}
                     <li>
-                        <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> &mdash;
+                        <span class="project-title"><a {{if $project.Link}}href="{{$project.Link}}" target="_blank"{{end}}>{{$project.Name}}</a></span> &mdash;
                         <span class="project-tagline">{{$project.Description}}</span>
 
                         {{if $project.Role}}
@@ -174,11 +174,11 @@
 
         {{if .Projects}}
         <section class="section projects-section">
-            <h2 class="section-title"><i class="fa fa-archive"></i>Мои проекты</h2>
+            <h2 class="section-title"><i class="fa fa-home"></i>Мои проекты</h2>
 
             {{range $project := .Projects}}
             <div class="item">
-                <span class="project-title"><a href="{{$project.Link}}" target="_blank">{{$project.Name}}</a></span> &mdash;
+                <span class="project-title"><a {{if $project.Link}}href="{{$project.Link}}" target="_blank"{{end}}>{{$project.Name}}</a></span> &mdash;
                 <span class="project-tagline">{{$project.Description}}</span>
 
                 {{if $project.Role}}
